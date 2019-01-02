@@ -1,0 +1,33 @@
+@model registerUser
+
+<form asp-action="newUser" asp-controller="Login" method="post">
+    <div class="form-group">
+        <span asp-validation-for="first_name"></span>
+        <label asp-for="first_name"></label>
+        <input asp-for="first_name" class="form-control">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="last_name"></span>
+        <label asp-for="last_name"></label>
+        <input asp-for="last_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span asp-validation-for="email"></span>
+        <label asp-for="email"></label>
+        <input asp-for="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span asp-validation-for="password"></span>
+        <label asp-for="password"></label>
+        <input asp-for="password" class="form-control" type="password">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="confirm"></span>
+        <label asp-for="confirm"></label>
+        <input asp-for="confirm" class="form-control" type="password">
+    </div>
+
+    <button type="submit" class="btn btn-success">New Host</button>
+</form>

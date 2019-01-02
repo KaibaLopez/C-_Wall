@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Wall Page";
+}
+@model List<Message>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">The CodingDojo Wall</a>
+            </div>
+            <ul class="nav navbar-nav" style="text-align:left;">
+                <li class="active"><a href="">Home</a></li>
+                <li><a href="clear">Log off</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        @Html.Partial("MessagePartial", (Message)new Message())
+    </div>
+    <div class="jumbotron">
+        <ul class="list-group list-group-flush">
+            @foreach (var message in Model){
+            <li class="list-group-item">
+                <div class="container">
+                    <p> <span style="font-weight:bold">@message.user.first_name </span> - @message.created_at</p>
+                    <textarea rows="5"> @message.text </textarea>
+                    @foreach(var comment in message.comments){
+                    <p>@comment.user.first_name - @comment.created_at</p>
+                    <p>@comment.text</p>
+                    }
+                    <div class="container">
+                        <form asp-action="postComment" asp-controller="Home" method="post">
+                            <input type="hidden" name="mId" value="@message.mId" />
+                            @Html.Partial("CommentPartial", (Comment)new Comment())
+                            <button type="submit" class="btn btn-default">New Comment</button>
+                        </form>
+                    </div>
+                </div>
+</li>
+            }
+        </ul>
+    </div>
